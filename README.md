@@ -3,9 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-把视频或音频文件拖进终端，自动完成：
-
-**提取音频 → 本地语音识别（中文为主、多语种支持）→ 导出 SRT 字幕**
+**对视频进行本地语音识别，并自动导出SRT字幕**
 
 识别全程在本机完成，音视频文件不会上传到任何服务器。模型下载一次后可完全离线使用。
 
@@ -129,42 +127,42 @@ auto-subtitle "video.mp4"
 
 ### 参数说明
 
-| 参数 | 说明 | 默认值 |
-| --- | --- | --- |
-| `--engine` | 识别引擎：`auto` / `whisper` / `sensevoice` | `auto`（等同 whisper） |
-| `-m, --model` | Whisper 模型：`tiny` / `base` / `small` / `medium` / `large-v3` / `turbo`，也可填仓库名或本地目录 | `turbo` |
-| `--hotwords` | 热词（人名、地名、术语），空格或逗号分隔，仅 Whisper 生效 | 无 |
-| `--replace` | 识别结果替换，格式 `错词=正确词,错词2=正确词2` | 无 |
-| `--model-source` | Whisper 模型下载源：`auto` / `modelscope` / `hf` | `auto`（优先 ModelScope） |
-| `-l, --language` | 语言代码，如 `zh`、`en`；留空自动检测 | 自动检测 |
-| `-o, --output-dir` | 字幕输出目录 | 与媒体文件同目录 |
-| `-f, --format` | 输出格式：`srt` / `txt` / `both` | `srt` |
-| `--max-chars` | 每条字幕最大字符数（最小 8） | `30` |
-| `--beam-size` | 束搜索宽度，越大越准但越慢 | `5` |
-| `--threads` | CPU 线程数 | 自动（最多 8） |
-| `--device` | 计算设备：`auto` / `cpu` / `cuda` | `auto` |
-| `--compute-type` | 计算精度，如 `int8`、`float16` | CPU 用 `int8`，GPU 用 `float16` |
-| `--initial-prompt` | 自定义识别引导提示 | 中文提示 |
-| `--no-prompt` | 关闭中文引导提示（纯英文内容可用） | 提示开启 |
-| `--no-vad` | 关闭静音检测 | 开启 |
-| `--overwrite` | 覆盖同名输出文件 | 自动改名，不覆盖 |
-| `--list-models` | 列出可选模型后退出 | — |
-| `--version` | 显示版本号 | — |
+| 参数               | 说明                                                                                              | 默认值                          |
+| ------------------ | ------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `--engine`         | 识别引擎：`auto` / `whisper` / `sensevoice`                                                       | `auto`（等同 whisper）          |
+| `-m, --model`      | Whisper 模型：`tiny` / `base` / `small` / `medium` / `large-v3` / `turbo`，也可填仓库名或本地目录 | `turbo`                         |
+| `--hotwords`       | 热词（人名、地名、术语），空格或逗号分隔，仅 Whisper 生效                                         | 无                              |
+| `--replace`        | 识别结果替换，格式 `错词=正确词,错词2=正确词2`                                                    | 无                              |
+| `--model-source`   | Whisper 模型下载源：`auto` / `modelscope` / `hf`                                                  | `auto`（优先 ModelScope）       |
+| `-l, --language`   | 语言代码，如 `zh`、`en`；留空自动检测                                                             | 自动检测                        |
+| `-o, --output-dir` | 字幕输出目录                                                                                      | 与媒体文件同目录                |
+| `-f, --format`     | 输出格式：`srt` / `txt` / `both`                                                                  | `srt`                           |
+| `--max-chars`      | 每条字幕最大字符数（最小 8）                                                                      | `30`                            |
+| `--beam-size`      | 束搜索宽度，越大越准但越慢                                                                        | `5`                             |
+| `--threads`        | CPU 线程数                                                                                        | 自动（最多 8）                  |
+| `--device`         | 计算设备：`auto` / `cpu` / `cuda`                                                                 | `auto`                          |
+| `--compute-type`   | 计算精度，如 `int8`、`float16`                                                                    | CPU 用 `int8`，GPU 用 `float16` |
+| `--initial-prompt` | 自定义识别引导提示                                                                                | 中文提示                        |
+| `--no-prompt`      | 关闭中文引导提示（纯英文内容可用）                                                                | 提示开启                        |
+| `--no-vad`         | 关闭静音检测                                                                                      | 开启                            |
+| `--overwrite`      | 覆盖同名输出文件                                                                                  | 自动改名，不覆盖                |
+| `--list-models`    | 列出可选模型后退出                                                                                | —                               |
+| `--version`        | 显示版本号                                                                                        | —                               |
 
 ## 模型怎么选
 
 交互模式启动时会显示模型列表；识别过程中输入 `m` 可随时切换模型。
 也可以用 `运行.bat --list-models` 查看完整列表。
 
-| 模型 | 大小 | 特点 |
-| --- | --- | --- |
-| **SenseVoice 中文专用** | 约 228 MB | 中文口语更稳、抗噪、自带标点，速度最快 |
+| 模型                      | 大小      | 特点                                        |
+| ------------------------- | --------- | ------------------------------------------- |
+| **SenseVoice 中文专用**   | 约 228 MB | 中文口语更稳、抗噪、自带标点，速度最快      |
 | **Whisper turbo**（默认） | 约 1.6 GB | 精度接近 large-v3，CPU 速度较快，多语种通用 |
-| Whisper large-v3 | 约 3.1 GB | 准确率最高，CPU 上较慢 |
-| Whisper medium | 约 1.5 GB | 精度与速度折中 |
-| Whisper small | 约 480 MB | 更快，适合长视频或低配电脑 |
-| Whisper base | 约 145 MB | 只建议用于快速测试流程 |
-| Whisper tiny | 约 75 MB | 仅用于验证流程 |
+| Whisper large-v3          | 约 3.1 GB | 准确率最高，CPU 上较慢                      |
+| Whisper medium            | 约 1.5 GB | 精度与速度折中                              |
+| Whisper small             | 约 480 MB | 更快，适合长视频或低配电脑                  |
+| Whisper base              | 约 145 MB | 只建议用于快速测试流程                      |
+| Whisper tiny              | 约 75 MB  | 仅用于验证流程                              |
 
 建议中文口语视频先用 **SenseVoice** 跑一遍，再用 **Whisper turbo** 跑一遍，
 选择语句更通顺、断句更自然的结果。
