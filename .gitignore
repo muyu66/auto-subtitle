@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# 测试与工具缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 本地实验 / 模型 / 测试输出
+_models_tmp/
+_test_output*/
+*.part
+*.log
+
+# 示例媒体与生成的字幕（不要提交到仓库）
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.flv
+*.webm
+*.wmv
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.aac
+*.srt
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
